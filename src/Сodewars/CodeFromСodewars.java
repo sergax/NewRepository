@@ -1,8 +1,77 @@
 package Сodewars;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 public class CodeFromСodewars {
+    /*
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+For example, 2 is written as II in Roman numeral, just two one's added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+
+    I can be placed before V (5) and X (10) to make 4 and 9.
+    X can be placed before L (50) and C (100) to make 40 and 90.
+    C can be placed before D (500) and M (1000) to make 400 and 900.
+
+Given a roman numeral, convert it to an integer.
+     */
+    public static int romanToInt(String s) {
+        int sum = 0;
+        HashMap<Character, Integer> mapRoman = new HashMap<>();
+        mapRoman.put('I', 1);
+        mapRoman.put('V', 5);
+        mapRoman.put('X', 10);
+        mapRoman.put('L', 50);
+        mapRoman.put('C', 100);
+        mapRoman.put('D', 500);
+        mapRoman.put('M', 1000);
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            char c = s.charAt(i);
+            sum += mapRoman.get(c);
+            if (mapRoman.get(s.charAt(i)) < mapRoman.get(s.charAt(i + 1)))
+                sum -= mapRoman.get(c) * 2;
+        }
+            sum += mapRoman.get(s.charAt(s.length() - 1));
+        return sum;
+    }
+
+    /*
+    In this Kata your task will be to return the count of pairs that have consecutive numbers as follows:
+    pairs([1,2,5,8,-4,-3,7,6,5]) = 3
+    The pairs are selected as follows [(1,2),(5,8),(-4,-3),(7,6),5]
+    --the first pair is (1,2) and the numbers in the pair are consecutive; Count = 1
+    --the second pair is (5,8) and are not consecutive
+    --the third pair is (-4,-3), consecutive. Count = 2
+    --the fourth pair is (7,6), also consecutive. Count = 3.
+    --the last digit has no pair, so we ignore.
+     */
+    public static String solve(int[] arr) {
+        //..
+        Random randomInd = new Random();
+        for (int i = 0; i < arr.length - 1 ; i++) {
+           int ran = randomInd.nextInt(i + 1);
+           int a = arr[ran];
+           arr[ran] = arr[i];
+           arr[i] = a;
+        }
+
+        return Arrays.toString(arr);
+    }
+
     /*
     Your task in order to complete this Kata is to write a function which formats a duration,
     given as a number of seconds, in a human-friendly way.
@@ -22,7 +91,7 @@ public class CodeFromСodewars {
                     int divider = seconds / UNITS[i];
                     seconds = seconds % UNITS[i];
                     result += (result.equals("") ? "" : (seconds == 0 ? " and " : ", "))
-                                + divider + " " + LABELS[i] + (divider > 1 ? "s" : "");
+                            + divider + " " + LABELS[i] + (divider > 1 ? "s" : "");
                 }
             }
             return result;
@@ -155,3 +224,4 @@ public class CodeFromСodewars {
         }
     }
 }
+
