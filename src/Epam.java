@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Epam {
     public static void main(String[] args) {
         Test t = new Test();
@@ -6,6 +9,11 @@ public class Epam {
         t.Array();
         t.StrinLine();
         t.FragmentCode();
+
+        Map<String, String> map = new HashMap<>();
+        map.put(new String("key"), "value 1");
+        map.put(new String("key"), "value 2");
+        System.out.println(map);
 
 
     }

@@ -26,7 +26,9 @@ class CodeFromСodewarsTest {
         assertEquals(47, CodeFromСodewars.ThinkingAndTesting.testAB(1, 47));
         assertEquals(6, CodeFromСodewars.ThinkingAndTesting.testAB(4, 2));
 
-        assertEquals("1 second", CodeFromСodewars.TimeFormatter.formatDuration(1));
-        assertEquals("1 hour, 1 minute and 2 seconds", CodeFromСodewars.TimeFormatter.formatDuration(3662));
+//        assertEquals("1 second", CodeFromСodewars.TimeFormatter.formatDuration(1));
+//        assertEquals("1 hour, 1 minute and 2 seconds", CodeFromСodewars.TimeFormatter.formatDuration(3662));
+
+        assertEquals(9, CodeFromСodewars.romanToInt("IX"));
     }
 }
