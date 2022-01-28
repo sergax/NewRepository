@@ -30,5 +30,6 @@ class CodeFromСodewarsTest {
 //        assertEquals("1 hour, 1 minute and 2 seconds", CodeFromСodewars.TimeFormatter.formatDuration(3662));
 
         assertEquals(9, CodeFromСodewars.romanToInt("IX"));
+        assertEquals("fl", CodeFromСodewars.longestCommonPrefix(new String[] {"flower","flow","flight"}));
     }
 }

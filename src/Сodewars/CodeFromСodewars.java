@@ -7,6 +7,30 @@ import java.util.Random;
 
 public class CodeFromСodewars {
     /*
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+     */
+    public static String longestCommonPrefix(String[] strs) {
+        String emptyString = "";
+        String result = strs[0];
+        if(strs.length == 0) {
+            return emptyString;
+        }
+        for (int i = 0; i < strs.length - 1; i++) {
+            while (!strs[i].startsWith(result)) {
+                result = result.substring(0, strs.length - 1);
+            }
+        }
+        return result;
+    }
+
+
+    /*
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 Symbol       Value
