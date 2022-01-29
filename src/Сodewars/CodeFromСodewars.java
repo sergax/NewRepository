@@ -1,11 +1,86 @@
 package Сodewars;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class CodeFromСodewars {
+    /*
+    Add two numbers and return it as a linked list;
+     */
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode result = new ListNode(0);
+        ListNode pointer1 = l1, pointer2 = l2, currentNode = result;
+        int dozenCarrier = 0;
+
+        while (pointer1 != null || pointer2 != null) {
+            int pointer1Value = (pointer1 == null) ? 0 : pointer1.val;
+            int pointer2Value = (pointer2 == null) ? 0 : pointer2.val;
+
+            int sum = pointer1Value + pointer2Value + dozenCarrier;
+            dozenCarrier = sum / 10;
+            currentNode.next = new ListNode(sum % 10);
+            currentNode = currentNode.next;
+
+            if(pointer1 != null) {
+                pointer1 = pointer1.next;
+            }
+            if(pointer2 != null) {
+                pointer2 = pointer2.next;
+            }
+
+            if(dozenCarrier > 0) {
+                currentNode.next = new ListNode(dozenCarrier);
+            }
+        }
+        return result.next;
+    }
+    /*
+    You are given the heads of two sorted linked lists list1 and list2.
+    Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+    Return the head of the merged linked list.
+    Input: list1 = [1,2,4], list2 = [1,3,4]
+    Output: [1,1,2,3,4,4]
+     */
+    public static class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {
+        }
+        ListNode(int val) {
+            this.val = val;
+        }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+
+        public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+            if (list1 == null) return list2;
+            if (list2 == null) return list1;
+
+            if (list1.val > list2.val) {
+                ListNode tmp = list2;
+                list2 = list2.next;
+                tmp.next = list1;
+                list1 = tmp;
+            }
+
+            ListNode head = list1;
+            while (list2 != null && list1.next != null) {
+                if(list2.val < list1.next.val) {
+                    ListNode tmp = list2;
+                    list2 = list2.next;
+                    tmp.next = list1.next;
+                    list1.next = tmp;
+                }
+                list1 = list1.next;
+            }
+            if(list2 != null) {
+                list1.next = list2;
+            }
+                return head;
+        }
+    }
+
     /*
 Write a function to find the longest common prefix string amongst an array of strings.
 If there is no common prefix, return an empty string "".
@@ -18,7 +93,7 @@ Output: "fl"
     public static String longestCommonPrefix(String[] strs) {
         String emptyString = "";
         String result = strs[0];
-        if(strs.length == 0) {
+        if (strs.length == 0) {
             return emptyString;
         }
         for (int i = 0; i < strs.length - 1; i++) {
@@ -69,7 +144,7 @@ Given a roman numeral, convert it to an integer.
             if (mapRoman.get(s.charAt(i)) < mapRoman.get(s.charAt(i + 1)))
                 sum -= mapRoman.get(c) * 2;
         }
-            sum += mapRoman.get(s.charAt(s.length() - 1));
+        sum += mapRoman.get(s.charAt(s.length() - 1));
         return sum;
     }
 
@@ -86,11 +161,11 @@ Given a roman numeral, convert it to an integer.
     public static String solve(int[] arr) {
         //..
         Random randomInd = new Random();
-        for (int i = 0; i < arr.length - 1 ; i++) {
-           int ran = randomInd.nextInt(i + 1);
-           int a = arr[ran];
-           arr[ran] = arr[i];
-           arr[i] = a;
+        for (int i = 0; i < arr.length - 1; i++) {
+            int ran = randomInd.nextInt(i + 1);
+            int a = arr[ran];
+            arr[ran] = arr[i];
+            arr[i] = a;
         }
 
         return Arrays.toString(arr);

@@ -13,8 +13,8 @@ public class TwoClasses {
     public static String getCallerClassAndMethodName() {
         Thread current = Thread.currentThread();
         StackTraceElement[] methods = current.getStackTrace();
-        if (methods.length>3)
-            return methods[3].getClassName()+"#"+methods[3].getMethodName();
+        if (methods.length > 3)
+            return methods[3].getClassName() + "#" + methods[3].getMethodName();
         return null;
     }
 }
